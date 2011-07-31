@@ -16,6 +16,26 @@ require_once 'EPub.php';
 
 register_menu("Content Extractor","load_ui");
 
+add_action('wp_loaded','check_post_for_epub');
+
+function check_post_for_epub(){
+	global $extracted_content;
+	$extract_url = $_POST['url'];
+	if($extract_url){
+			
+			$extracted_content = extract_content($extract_url);
+				if($extracted_content['hasContent'] == false)
+				{
+				$extracted_content = extract_content($extract_url,true);
+				}
+			
+	clean_content_body();
+	}
+	
+	if($_POST['epub']){
+		generate_epub_version($extracted_content);
+	}
+}
 
 function load_ui(){
 	global $extracted_content;
