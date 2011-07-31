@@ -84,7 +84,7 @@ class Readability
 	public $regexps = array(
 		'unlikelyCandidates' => '/combx|comment|community|disqus|extra|foot|header|menu|remark|rss|shoutbox|sidebar|sponsor|ad-break|agegate|pagination|pager|popup|tweet|twitter/i',
 		'okMaybeItsACandidate' => '/and|article|body|column|main|shadow/i',
-		'positive' => '/article|body|content|entry|hentry|main|page|pagination|post|text|blog|story/i',
+		'positive' => '/article|body|content|entry|hentry|main|page|pagination|post|text|blog|tright|thumb|thumbimage|image|thumbinner|story/i',
 		'negative' => '/combx|comment|com-|contact|foot|footer|footnote|masthead|media|meta|outbrain|promo|related|scroll|shoutbox|sidebar|sponsor|shopping|tags|tool|widget/i',
 		'divToPElements' => '/<(a|blockquote|dl|div|img|ol|p|pre|table|ul)/i',
 		'replaceBrs' => '/(<br[^>]*>[ \n\r\t]*){2,}/i',

@@ -3,10 +3,11 @@
 // Example. 
 // Create a test book for download.
 
+
+
+include_once("../epub/EPub.phpbility/EPub.php");
+
 $fileDir = './';
-
-include_once("EPub.php");
-
 $book = new EPub();
 
 // Title and Identifier are mandatory!
@@ -118,8 +119,7 @@ $book->setSplitSize(15000); // For this test, we split at approx 15k. Default is
 $book->addChapter("Chapter 4: Vivamus bibendum massa split", "Chapter004.html", $chapter4, true);
 
 // More advanced use of the splitter:
-// Still using Chapter 4, but as you can see, "Chapter 4" also contains a header for Chapter 5.
-include_once 'EPubChapterSplitter.php';
+// Still using Chapter 4, but as you can see, "Chapter 4" also contains a header for Chapter 5.../epub/EPubChapterSplitter.phpterSplitter.phpterSplitter.php';
 $splitter = new EPubChapterSplitter();
 $splitter->setSplitSize(15000); // For this test, we split at approx 15k. Default is 250000 had we left it alone.
 

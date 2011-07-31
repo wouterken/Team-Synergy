@@ -87,7 +87,7 @@ class EPub {
 		if (!defined("Zip::VERSION") || Zip::VERSION < self::REQ_ZIP_VERSION) {
 			die("<p>EPub requires Zip.php at version " . self::REQ_ZIP_VERSION . " or higher.<br />You can obtain the latest version from <a href=\"http://www.phpclasses.org/browse/package/6110.html\">http://www.phpclasses.org/browse/package/6110.html</a>.</p>");
 		}
-		include_once("EPubChapterSplitter.php");
+		include_once "EPubChapterSplitter.php";
 		
 		$this->docRoot = $_SERVER["DOCUMENT_ROOT"] . "/";
 
@@ -1262,7 +1262,7 @@ class EPub {
 	 * @return     string   The formatted uuid
 	 */
 	function createUUID($version = 4, $url = NULL) {
-		include_once("lib.uuid.php");
+		include_once("../epub/lib.uuid.phpty/lib.uuid.php");
 		return UUID::mint($ver,$url,UUID::nsURL);
 	}
 
