@@ -22,6 +22,8 @@ if($curl){
   curl_setopt($ch,CURLOPT_URL,$url);
   curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
   curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+   curl_setopt($ch,CURLOPT_USERAGENT,"Mozilla/5.0 (Windows; U; Windows NT
+5.1; en-US; rv:1.7.5) Gecko/20041107 Firefox/1.0");
   $html = curl_exec($ch);
   curl_close($ch);
 
@@ -76,11 +78,17 @@ return $content;
 **/
 function clean_content_body(){
 	global $extracted_content;
-	$extracted_content['body'] = "</h1><span style=\"font-family: 'Georgia';\">".$extracted_content['body'];
-if(preg_match_all("/<img.*?src=\"([^(http:)].*?)\"/",$extracted_content['body'],$matches)){
-foreach($matches[1] as $match){
+	if(preg_match("/(http:\/\/[^\/]+)\/?/",$extracted_content['url'],$matches)){
+	$host_base = $matches[1];
+	}else{
+		$host_base = $extracted_content['url'];
+	}
 
-	$extracted_content['body']=	preg_replace("/<img(.*?)src=\"".str_replace("/","\/",$match)."/","<img $1 src=\"".$extracted_content['url'].$match."\"",$extracted_content['body']);
+	
+	$extracted_content['body'] = "</h1><span style=\"font-family: 'Georgia';\">".$extracted_content['body'];
+if(preg_match_all("/<img.*?src=\s*\"([^(http:)].*?)\"/",$extracted_content['body'],$matches)){
+	foreach($matches[1] as $match){
+	$extracted_content['body']=	preg_replace("/<img(.*?)src=\s*\"".str_replace("/","\/",$match)."/","<img $1 src=\"".$host_base.$match."\"",$extracted_content['body']);
 	}
 }
 if(preg_match_all("/<a.*?href=\"([^(http:)].*?)\"/",$extracted_content['body'],$matches)){

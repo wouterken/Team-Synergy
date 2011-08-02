@@ -11,7 +11,7 @@ License: GPL2
 global $wpdb;
 
 require_once 'Extractor.php';
-require_once __DIR__.'/../register_menus.php';
+require_once dirname(__FILE__).'/../register_menus.php';
 require_once 'EPub.php';
 
 register_menu("Content Extractor","load_ui");
